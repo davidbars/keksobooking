@@ -1,3 +1,4 @@
+'use strict';
 
 var OFFER_TYPES = [
   'palace',
@@ -6,24 +7,24 @@ var OFFER_TYPES = [
   'bungalo',
 ];
 var OFFER_FEATURES = [
-  "wifi",
-  "dishwasher",
-  "parking",
-  "washer",
-  "elevator",
-  "conditioner"
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner'
 ];
 var OFFER_BRANDS = [
-  "Royal Park Hotel",
-  "Kalev",
-  "Maxima",
-  "Farmi",
-  "Neste",
-  "Selver",
-  "Kantar Emor",
-  "Cian",
-  "Arsenal-holding",
-  "NDV Design"
+  'Royal Park Hotel',
+  'Kalev',
+  'Maxima',
+  'Farmi',
+  'Neste',
+  'Selver',
+  'Kantar Emor',
+  'Cian',
+  'Arsenal-holding',
+  'NDV Desig'
 ];
 var MapRect = {
   LEFT: 100,
@@ -32,21 +33,21 @@ var MapRect = {
   BOTTOM: 630,
 };
 
-// достаем рандомное число в рамках аргументов
+//  достаем рандомное число в рамках аргументов
 var getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-// достаем рандомный элемент из массива
+//  достаем рандомный элемент из массива
 var getRandomArrElement = function (arr) {
   return arr[getRandomInt(0, arr.length - 1)];
 };
 
-//достаем рандомное число элементов из массива
+//  достаем рандомное число элементов из массива
 var getRandomArr = function (arr) {
   var randomIndex = getRandomInt(0, arr.length - 1);
   var myArr = [];
-  for ( var j = 1; j < randomIndex ; j++ ) {
+  for (var j = 1; j < randomIndex; j++) {
     myArr.push(arr[j]);
   }
   return myArr;
@@ -67,11 +68,11 @@ var makeOffer = function (id) {
       title: fullTitle,
       address: location.x + ', ' + location.y,
       type: getRandomArrElement(OFFER_TYPES),
-      price: getRandomInt(3500,80) * 100,
+      price: getRandomInt(3500, 80) * 100,
       rooms: rooms,
       guests: guests,
       features: getRandomArr(OFFER_FEATURES),
-      description: 'Our ' + fullTitle + ' Conveniently located within a ' + getRandomInt(5,25)+ '-minute walk from Shinbashi and center. The ' + fullTitle + ' is modern and stylish accommodations.'
+      description: 'Our ' + fullTitle + ' Conveniently located within a ' + getRandomInt(5, 25) + '-minute walk from Shinbashi and center. The ' + fullTitle + ' is modern and stylish accommodations.'
     },
     location: location,
   };
@@ -87,4 +88,5 @@ var getOffers = function (count) {
   return offers;
 };
 
-var offers = getOffers(8);
+getOffers(8);
+
