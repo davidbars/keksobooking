@@ -96,8 +96,6 @@ var getOffers = function (count) {
   return offers;
 };
 
-getOffers(8);
-
 var map = document.querySelector('.map');
 var mapPins = map.querySelector('.map__pins');
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
