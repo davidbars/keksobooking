@@ -1,5 +1,8 @@
 'use strict';
 
+var mapNode = document.querySelector('.map');
+mapNode.classList.remove('map--faded');
+
 var OFFER_TYPES = [
   'palace',
   'flat',
@@ -31,6 +34,11 @@ var MapRect = {
   TOP: 130,
   RIGHT: 1200,
   BOTTOM: 630,
+};
+var PinSize = {
+  WIDTH: 70,
+  HEIGHT: 50,
+  RADIUS: 25,
 };
 
 //  достаем рандомное число в рамках аргументов
@@ -89,4 +97,32 @@ var getOffers = function (count) {
 };
 
 getOffers(8);
+
+var map = document.querySelector('.map');
+var mapPins = map.querySelector('.map__pins');
+var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+
+var renderPin = function (offer) {
+  var pin = pinTemplate.cloneNode(true);
+  var pinImg = pin.querySelector('img');
+
+  pinImg.src = offer.avatar;
+  pin.style.left = (offer.location.x - PinSize.RADIUS) + 'px';
+  pin.style.top = (offer.location.y - PinSize.HEIGHT) + 'px';
+
+  return pin;
+};
+
+var renderPins = function (offers) {
+  var fragment = document.createDocumentFragment();
+  offers.forEach(function (offer) {
+    fragment.appendChild(renderPin(offer));
+  });
+
+  mapPins.appendChild(fragment);
+};
+
+var offers = getOffers(8);
+
+renderPins(offers);
 
